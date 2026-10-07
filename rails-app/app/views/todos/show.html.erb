@@ -1,17 +1,20 @@
 <% content_for :title, @todo.title %>
 
 <div class="hero">
-  <h1>Detalhe da <span>tarefa</span> 🔍</h1>
+  <div class="eyebrow">Arquivo / task_<%= format("%03d", @todo.id) %></div>
+  <h1>Dados da <span>missão.</span></h1>
+  <p>Leitura dos parâmetros armazenados no sistema.</p>
 </div>
 
 <div class="card">
-  <dl>
+  <span class="panel-label">// Registro completo</span>
+  <dl class="detail-list">
     <div class="detail-row">
-      <dt>Tarefa</dt>
+      <dt>Diretiva</dt>
       <dd><%= @todo.title %></dd>
     </div>
     <div class="detail-row">
-      <dt>Status</dt>
+      <dt>Estado</dt>
       <dd>
         <% if @todo.completed? %>
           <span class="badge badge-done">Concluída</span>
@@ -26,10 +29,10 @@
     </div>
   </dl>
 
-  <div style="display: flex; gap: 10px; margin-top: 16px;">
-    <%= link_to "Editar", edit_todo_path(@todo), class: "btn btn-primary" %>
-    <%= button_to "Excluir", @todo, method: :delete, class: "btn btn-ghost", form_class: nil, data: { turbo_confirm: "Excluir esta tarefa?" } %>
+  <div class="actions">
+    <%= link_to "Editar missão", edit_todo_path(@todo), class: "btn btn-primary" %>
+    <%= button_to "Excluir registro", @todo, method: :delete, class: "btn btn-ghost btn-danger", data: { turbo_confirm: "Excluir esta tarefa?" } %>
   </div>
 </div>
 
-<%= link_to "← Voltar para a lista", todos_path, class: "btn btn-ghost btn-back" %>
+<%= link_to "← Retornar ao painel", todos_path, class: "btn btn-ghost btn-back" %>

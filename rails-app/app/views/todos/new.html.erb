@@ -1,11 +1,14 @@
 <% content_for :title, "Nova tarefa" %>
 
 <div class="hero">
-  <h1>Nova <span>tarefa</span> ✨</h1>
+  <div class="eyebrow">Entrada de dados / criar</div>
+  <h1>Nova <span>missão.</span></h1>
+  <p>Registre uma nova diretiva no sistema.</p>
 </div>
 
 <div class="card">
+  <span class="panel-label">// Dados da missão</span>
   <%= render "form", todo: @todo %>
 </div>
 
-<%= link_to "← Voltar para a lista", todos_path, class: "btn btn-ghost btn-back" %>
+<%= link_to "← Retornar ao painel", todos_path, class: "btn btn-ghost btn-back" %>

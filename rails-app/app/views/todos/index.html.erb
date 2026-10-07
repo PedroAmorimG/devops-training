@@ -1,24 +1,37 @@
-<% content_for :title, "Todos" %>
+<% content_for :title, "Central de missões" %>
 
 <div class="hero">
-  <h1>Minhas <span>Tarefas</span> 📝</h1>
-  <p>Organize seu dia, uma tarefa de cada vez.</p>
+  <div class="eyebrow">Command center / setor 01</div>
+  <h1>Execute sua <span>missão.</span></h1>
+  <p>Organize objetivos, neutralize pendências e mantenha o sistema em fluxo.</p>
+</div>
+
+<% done = @todos.count(&:completed?) %>
+<div class="dashboard-grid" aria-label="Resumo das tarefas">
+  <div class="metric">
+    <span class="metric-label">Missões ativas</span>
+    <span class="metric-value"><%= @todos.size - done %> <em>OPEN</em></span>
+  </div>
+  <div class="metric">
+    <span class="metric-label">Finalizadas</span>
+    <span class="metric-value"><%= done %> <em>DONE</em></span>
+  </div>
 </div>
 
 <div class="card">
+  <span class="panel-label">// Nova diretiva</span>
   <%= form_with(model: Todo.new, url: todos_path, class: "new-todo") do |form| %>
-    <%= form.text_field :title, placeholder: "O que precisa ser feito?", required: true, autocomplete: "off" %>
-    <%= form.submit "Adicionar", class: "btn btn-primary" %>
+    <%= form.text_field :title, placeholder: "Insira o próximo objetivo...", required: true, autocomplete: "off", aria: { label: "Nova tarefa" } %>
+    <%= form.submit "Adicionar missão", class: "btn btn-primary" %>
   <% end %>
 </div>
 
 <% if @todos.any? %>
-  <% done = @todos.count(&:completed?) %>
   <div class="stats">
     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="<%= @todos.size %>" aria-valuenow="<%= done %>">
       <div class="progress-bar" style="width: <%= (done.to_f / @todos.size * 100).round %>%"></div>
     </div>
-    <span><%= done %>/<%= @todos.size %> concluídas</span>
+    <span>Progresso // <%= done %> de <%= @todos.size %></span>
   </div>
 
   <div id="todos" class="todo-list">
@@ -28,8 +41,8 @@
   </div>
 <% else %>
   <div class="empty card">
-    <span class="empty-icon">🎉</span>
-    <strong>Nada por aqui!</strong>
-    Adicione sua primeira tarefa acima.
+    <div class="empty-visual" aria-hidden="true"><span>+</span></div>
+    <strong>Fila de missões vazia</strong>
+    Adicione sua primeira diretiva no terminal acima.
   </div>
 <% end %>

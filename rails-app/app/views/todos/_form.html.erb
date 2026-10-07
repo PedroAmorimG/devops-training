@@ -11,14 +11,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title, "Tarefa" %>
-    <%= form.text_field :title, placeholder: "Ex.: Estudar Kubernetes" %>
+    <%= form.label :title, "Identificação da missão" %>
+    <%= form.text_field :title, placeholder: "Ex.: Estudar Kubernetes", autofocus: true %>
   </div>
 
   <div class="field check-field">
     <%= form.check_box :completed %>
-    <%= form.label :completed, "Concluída" %>
+    <%= form.label :completed, "Marcar missão como concluída" %>
   </div>
 
-  <%= form.submit "Salvar", class: "btn btn-primary" %>
+  <%= form.submit "Salvar diretiva", class: "btn btn-primary" %>
 <% end %>

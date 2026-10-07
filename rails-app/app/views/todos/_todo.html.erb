@@ -8,7 +8,12 @@
     </label>
   <% end %>
 
-  <span class="todo-title"><%= todo.title %></span>
+  <div class="todo-content">
+    <span class="todo-code">TASK_<%= format("%03d", todo.id) %></span>
+    <%= link_to todo.title, todo_path(todo), class: "todo-title" %>
+  </div>
+
+  <span class="todo-state"><%= todo.completed? ? "completa" : "pendente" %></span>
 
   <%= button_to todo_path(todo), method: :delete, class: "todo-delete", form_class: "todo-delete-form", title: "Excluir tarefa", aria: { label: "Excluir #{todo.title}" } do %>
     <svg viewBox="0 0 24 24">

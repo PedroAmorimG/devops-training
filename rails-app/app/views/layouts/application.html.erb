@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Todos" %></title>
+    <title><%= content_for(:title) || "Neon Task" %> // NEON TASK</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Todos">
+    <meta name="application-name" content="Neon Task">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -20,6 +20,16 @@
   </head>
 
   <body>
+    <header class="topbar">
+      <%= link_to root_path, class: "brand", aria: { label: "Neon Task — início" } do %>
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>NEON<span class="brand-accent">//</span>TASK</span>
+      <% end %>
+      <div class="system-status" aria-label="Sistema operacional">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>system online</span>
+      </div>
+    </header>
     <main class="container">
       <% if notice %>
         <p class="notice"><%= notice %></p>
@@ -30,7 +40,7 @@
       <%= yield %>
     </main>
     <footer class="app-footer">
-      versão <strong><%= ENV.fetch("APP_VERSION", "dev") %></strong> · pod <strong><%= ENV.fetch("HOSTNAME") { Socket.gethostname } %></strong>
+      build <strong><%= ENV.fetch("APP_VERSION", "dev") %></strong> // node <strong><%= ENV.fetch("HOSTNAME") { Socket.gethostname } %></strong>
     </footer>
   </body>
 </html>
